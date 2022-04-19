@@ -1,4 +1,4 @@
-# prettytables
+# accordion-editor
 
 ## Project setup
 ```
