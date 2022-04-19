@@ -1,26 +1,182 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"><b>&#128571; No JS Accordion Editor</b></nav>
+    <div id="accordion-window">
+      <div id="accordion-header">
+        <button v-bind:disabled="current_style==0 ? 'disabled' : null" id="prevStylebtn" @click="prevStyle()">&#x2039;</button>
+        <h3>Style {{current_style}}</h3> 
+        <button v-bind:disabled="current_style==styling.length-1 ? 'disabled' : null" id="nextStylebtn" @click="nextStyle()">&#x203A;</button>
+      </div>
+      <draggable v-model="content_list" item-key="id" ghost-class="ghost" @start="onStart" @end="onEnd">
+        <template #item="{element}">
+          <div class="accordion">
+            <accordion :content="element" v-bind:styling="styling[current_style]" @editContent='updateSection' />
+            <button class="deletebtn" @click="deleteSection(element)"> &#10006; </button>
+        </div>
+        </template>
+      </draggable>
+      <button class="btn btn-primary appbtn" @click="addSection()"> Add Section </button>
+
+      <input id="copytext" class="copytext" 
+        v-on:focus="$event.target.select()" 
+        ref="clone" 
+        readonly 
+        :value="text"/>
+      <button class="btn btn-success appbtn" id="copybtn" @click="copy()"> Copy HTML </button>
+   </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import accordion from './components/AccordionShell.vue'
+import draggable from 'vuedraggable'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    accordion,
+    draggable
+  },
+  data() {
+    return {
+      content_list: [
+        {'id': 0, 'title': 'Section Title 0', 'text': '<p>Add section text here. <em>Select text</em> to edit style. <em>Enter</em> to insert header or bullet points.</p>'}, 
+        {'id': 1, 'title': 'Section Title 1', 'text': ''}
+      ],
+      styling: [
+        {'id': 0, 'details': 'border: 2px solid #ddd; margin-bottom: -2px;', 'summary': 'padding: 12px 15px; color: #b31b1b; cursor: pointer; background-color: #eee;', 'textdiv': 'padding: 0px 10px 10px;'}, 
+        {'id': 1, 'details': 'margin-bottom: -2px;', 'summary': 'padding: 12px 15px; border: 2px solid #eeeeee; color: #b31b1b; font-size: 15.5pt; font-weight: bold; cursor: pointer;', 'textdiv': 'padding: 10px;'},
+        {'id': 2, 'details': '', 'summary': 'color: white; background-color: #de2424; padding: 10px; border: 3px solid #B31B1B; border-radius: 30px; width: 170px; text-align: center; margin-top: 10px; position: relative;', 'textdiv': 'padding: 20px; background-color: #eee; border: 3px solid #aaa; border-radius: 30px; margin-left: 25px; margin-top: -25px; z-index: 2;'}
+      ],
+      current_style: 0,
+      text: 'Nothing copied.',
+      editable: true
+    }
+  },
+  methods:{
+    // add new section
+    addSection(){
+      let nSections = this.content_list.length;
+      let section = {'id': nSections, 'title': 'Section Title ' + String(nSections), 'text': ''};
+      this.content_list.push(section);
+    },
+    // delete selected section
+    deleteSection(section){
+      const taskIndex = this.content_list.findIndex(s => s.id === section.id);
+      this.content_list.splice(taskIndex, 1);
+    },
+    // update section content
+    updateSection(section){
+      const taskIndex = this.content_list.findIndex(s => s.id === section.id);
+      this.content_list[taskIndex] = section
+    },
+    // on drag end, disable details
+    onStart(){
+      const detailstag = document.getElementsByTagName("details");
+      for (var i = 0; i < detailstag.length; i++) { 
+        detailstag[i].classList.add("disabled");
+      }
+    },
+    // on drag end, remove details disable
+    onEnd(){
+      const detailstag = document.getElementsByTagName("details");
+      for (var i = 0; i < detailstag.length; i++) { 
+        detailstag[i].classList.remove("disabled");
+      }
+    },
+    // go to next accordion style
+    nextStyle(){
+      this.current_style += 1;
+    },
+    // go to previous accordion style
+    prevStyle(){
+      this.current_style -= 1;
+    },
+    // html string in textarea and copy to clipboard
+    copy(){
+      var cstyle = this.styling[this.current_style];
+      this.text = ''
+      for (let i = 0; i < this.content_list.length; i++) { 
+        var ccontent = this.content_list[i];
+        this.text += "<details style='"+cstyle.details+"'><summary style='"+cstyle.summary+"'>"+ccontent.title+"</summary><div style='"+cstyle.textdiv+"'>"+ccontent.text+"</div></details>";
+      }
+      document.getElementById("copytext").value = this.text;
+      this.$refs.clone.focus();
+      document.execCommand('copy');
+      var copybtn = document.getElementById('copybtn');
+      var lasttext = copybtn.innerHTML;
+      copybtn.innerHTML = 'Copied!';
+      setTimeout(function () {
+          copybtn.innerHTML = lasttext;
+      }.bind(this), 500);
+    }
   }
 }
 </script>
 
 <style>
+p{
+  margin: 12px 0;
+}
+.disabled{
+  pointer-events: none;
+}
+.copytext{
+  opacity: 0;
+  position: absolute;
+  left: -999999px;
+}
+nav{
+  padding-left: 15px;
+}
+.ghost{
+  opacity: 30%;
+}
+body{ 
+  background-color: #eee;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+#accordion-window{
+  padding: 15px;
+  background-color: white;
+}
+#accordion-header{
+  text-align: center;
+  padding-bottom: 10px;
+}
+#accordion-header h3{
+  width: 100px;
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+.appbtn{
+  width: 120px;
+  margin-top: 30px;
+  margin-right: 5px;
+}
+.deletebtn{
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  padding: 5px;
+  border: none;
+  background-color:rgba(255, 0, 0, 0);
+}
+.deletebtn:hover{
+  color: #aaa;
+}
+.accordion{
+  position: relative;
+}
+#prevStylebtn, #nextStylebtn{
+  border: none;
+  background-color: white;
+  font-size: 30px;
 }
 </style>
