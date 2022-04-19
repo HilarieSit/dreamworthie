@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       content_list: [
-        {'id': 0, 'title': 'Section Title 0', 'text': '<p>Add section text here. <em>Select text</em> to edit style. <em>Enter</em> to insert header or bullet points.</p>'}, 
+        {'id': 0, 'title': 'Section Title 0', 'text': '<p>Add text here. Drag accordion sections to rearrange order. Select text to edit style and enter to insert bulleted list.'}, 
         {'id': 1, 'title': 'Section Title 1', 'text': ''}
       ],
       styling: [
@@ -95,11 +95,12 @@ export default {
     // html string in textarea and copy to clipboard
     copy(){
       var cstyle = this.styling[this.current_style];
-      this.text = ''
+      this.text = "<div style='margin-bottom: 2px'>"
       for (let i = 0; i < this.content_list.length; i++) { 
         var ccontent = this.content_list[i];
         this.text += "<details style='"+cstyle.details+"'><summary style='"+cstyle.summary+"'>"+ccontent.title+"</summary><div style='"+cstyle.textdiv+"'>"+ccontent.text+"</div></details>";
       }
+      this.text += "</div>"
       document.getElementById("copytext").value = this.text;
       this.$refs.clone.focus();
       document.execCommand('copy');
