@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"><b>&#128571; No JS Accordion Editor</b></nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"><b>No JS Accordion Editor</b></nav>
     <div id="accordion-window">
       <div id="accordion-header">
         <button v-bind:disabled="current_style==0 ? 'disabled' : null" id="prevStylebtn" @click="prevStyle()">&#x2039;</button>
