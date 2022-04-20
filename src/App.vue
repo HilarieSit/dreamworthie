@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       content_list: [
-        {'id': 0, 'title': 'Section Title 0', 'text': '<p>Add text here. Drag accordion sections to rearrange order. Select text to edit style and enter to insert bulleted list.'}, 
+        {'id': 0, 'title': 'Section Title 0', 'text': '<p>Add text here. Drag accordion sections to rearrange order. Select text to edit style and enter new line for more formats.'}, 
         {'id': 1, 'title': 'Section Title 1', 'text': ''}
       ],
       styling: [
