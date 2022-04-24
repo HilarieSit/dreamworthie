@@ -39,8 +39,8 @@ export default {
   data() {
     return {
       content_list: [
-        {'id': 0, 'title': 'Section Title 0', 'text': '<p>Add text here. Drag accordion sections to rearrange order. Select text to edit style and enter new line for more formats.'}, 
-        {'id': 1, 'title': 'Section Title 1', 'text': ''}
+        {'id': 0, 'title': 'Section Title 1', 'text': '<p>Add text here. Drag accordion sections to rearrange order. Select text to edit style and enter new line for more formats.'}, 
+        {'id': 1, 'title': 'Section Title 2', 'text': ''}
       ],
       styling: [
         {'id': 0, 'details': 'border: 2px solid #ddd; margin-bottom: -2px;', 'summary': 'padding: 12px 15px; color: #b31b1b; cursor: pointer; background-color: #eee;', 'textdiv': 'padding: 0px 10px 10px;'}, 
@@ -56,7 +56,7 @@ export default {
     // add new section
     addSection(){
       let nSections = this.content_list.length;
-      let section = {'id': nSections, 'title': 'Section Title ' + String(nSections), 'text': ''};
+      let section = {'id': nSections, 'title': 'Section Title ' + String(nSections+1), 'text': ''};
       this.content_list.push(section);
     },
     // delete selected section
