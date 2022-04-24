@@ -48,8 +48,7 @@ export default {
         {'id': 2, 'details': '', 'summary': 'color: white; background-color: #de2424; padding: 10px; border: 3px solid #B31B1B; border-radius: 30px; width: 170px; text-align: center; margin-top: 10px; position: relative;', 'textdiv': 'padding: 20px; background-color: #eee; border: 3px solid #aaa; border-radius: 30px; margin-left: 25px; margin-top: -25px; z-index: 2;'}
       ],
       current_style: 0,
-      text: 'Nothing copied.',
-      editable: true
+      text: 'Nothing copied.'
     }
   },
   methods:{
@@ -144,9 +143,11 @@ body{
 #accordion-window{
   border-radius: 5px;
   padding: 25px 15px 15px;
-  margin: 0 20px;
+  align-items: center;
+  margin: 0 auto;
   background-color: white;
   border: 2px #888 solid;
+  max-width: 900px;
 }
 #accordion-header{
   margin: 25px 0 0;
@@ -182,6 +183,12 @@ body{
   border: none;
   background-color: #eee;
   font-size: 40px;
+}
+
+@media only screen and (max-width: 900px) {
+  #accordion-window{
+    margin: 0 20px;
+  }
 }
 
 </style>
