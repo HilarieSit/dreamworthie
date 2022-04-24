@@ -1,5 +1,5 @@
 <template>
-    <div class="card" style="width: 18rem;">
+    <div class="card">
         <img class="card-img-top" alt="Card image cap" :src="project.url">
         <div class="card-body">
             <h5 class="card-title">{{project.name}}</h5>
@@ -25,6 +25,8 @@ export default {
 <style>
 .card{
     border: 2px #888 solid;
+    padding: 5px;
+    width: 19rem;
 }
 .card-img-top{
     height: 200px;

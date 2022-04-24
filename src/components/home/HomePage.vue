@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <h1>Templates</h1>
-    <p>Edit template and copy and paste to add beautiful components on your Canvas pages!</p>
+    <p id="homep">Edit template and copy and paste to add beautiful components on your Canvas pages!</p>
     <div id="homecard-container">
       <div class="homecard" v-for="project in projects" :key="project.id">
         <HomeCard v-bind:project="project" />
@@ -34,6 +34,12 @@ export default {
   text-align: center;
 }
 
+#homep{
+  width: 80%;
+  align-items: center;
+  margin: 0 auto;
+}
+
 h1{
   margin-top: 40px;
   font-size: 30px;
@@ -53,7 +59,7 @@ h1{
   margin: 15px 7px 0;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   h1{
     font-size: 25px;
   }
