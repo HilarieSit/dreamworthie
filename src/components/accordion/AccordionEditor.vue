@@ -120,7 +120,6 @@ p{
 }
 .disabled{
   pointer-events: none;
-  opacity: 0 !important;
 }
 .copytext{
   opacity: 0;

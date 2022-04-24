@@ -53,5 +53,11 @@ h1{
   margin: 15px 7px 0;
 }
 
+@media only screen and (max-width: 600px) {
+  h1{
+    font-size: 25px;
+  }
+}
+
 
 </style>

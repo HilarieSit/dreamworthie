@@ -16,7 +16,7 @@ export default {
     },
     methods:{
         redirectPage(name){
-            this.$router.push('/'+name) 
+            this.$router.push('/'+name.toLowerCase()) 
         }
   }
 }

@@ -10,12 +10,12 @@ const routes = [
         component: Home
     },
     {
-        path:'/Accordions',
+        path:'/accordions',
         name:'Accordions',
         component: AccordionEditor
     },
     {
-        path:'/Tables',
+        path:'/tables',
         name:'Tables',
         component: TableEditor
     }
