@@ -1,5 +1,5 @@
 <template>
-  <details v-bind:style="styling.details">
+  <details open v-bind:style="styling.details">
     <summary v-bind:style="styling.summary" @click="summaryclick">
       <div class="titletiptap" @click="preventToggle()">
         <TitleTipTap v-bind:title="sec_content.title" @editTitle="updateTitle" />
