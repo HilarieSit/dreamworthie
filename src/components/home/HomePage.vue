@@ -35,7 +35,8 @@ export default {
 }
 
 h1{
-  margin-top: 30px;
+  margin-top: 40px;
+  font-size: 30px;
 }
 
 #homecard-container{
@@ -51,5 +52,6 @@ h1{
   text-align: left;
   margin: 15px 7px 0;
 }
+
 
 </style>

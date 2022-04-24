@@ -7,9 +7,10 @@
 
 <script>
 export default {
-  name: 'App',
+  name: 'app',
   computed: {
     currentRouteName() {
+        document.title = this.$route.name;
         return this.$route.name;
     }
   },
@@ -26,12 +27,11 @@ export default {
 #app{
   background-color: #eee;
 }
-
 #nav2Home{
   cursor: pointer;
 }
 #nav2Home:hover{
-  color: #B31B1B;
+  color: #008000;
 }
 #navCurrent{
   color: #888;

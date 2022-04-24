@@ -31,5 +31,4 @@ export default {
     object-fit: cover;
     border-bottom: 1px #eee solid;
 }
-
 </style>

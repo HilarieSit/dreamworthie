@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <div id="accordion-window">
       <div id="accordion-header">
         <button v-bind:disabled="current_style==0 ? 'disabled' : null" id="prevStylebtn" @click="prevStyle()">&#x2039;</button>
-        <h3>Accordion Style {{current_style}}</h3> 
+        <h1>Accordion Style {{current_style+1}}</h1> 
         <button v-bind:disabled="current_style==styling.length-1 ? 'disabled' : null" id="nextStylebtn" @click="nextStyle()">&#x203A;</button>
       </div>
+      <div id="accordion-window">
       <draggable v-model="content_list" item-key="id" ghost-class="ghost" @start="onStart" @end="onEnd">
         <template #item="{element}">
           <div class="accordion">
@@ -120,6 +120,7 @@ p{
 }
 .disabled{
   pointer-events: none;
+  opacity: 0 !important;
 }
 .copytext{
   opacity: 0;
@@ -142,17 +143,21 @@ body{
   color: #2c3e50;
 }
 #accordion-window{
-  padding: 25px 30px 15px;
+  border-radius: 5px;
+  padding: 25px 15px 15px;
+  margin: 0 20px;
   background-color: white;
+  border: 2px #888 solid;
 }
 #accordion-header{
+  margin: 25px 0 0;
   text-align: center;
   padding-bottom: 10px;
 }
-#accordion-header h3{
-  width: 100px;
-  padding: 0 0 0;
+#accordion-header h1{
+  width: 100%;
   margin: 0;
+  padding: 0;
   display: inline;
 }
 .appbtn{
@@ -176,7 +181,8 @@ body{
 }
 #prevStylebtn, #nextStylebtn{
   border: none;
-  background-color: white;
-  font-size: 30px;
+  background-color: #eee;
+  font-size: 40px;
 }
+
 </style>
