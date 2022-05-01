@@ -43,10 +43,13 @@ export default {
     },
     computed: {
         keywords: function() {
-            const regex = /(?<=##%%)(.*?)(?=%%##)/g;
+            const regex = /(##%%)(.*?)(%%##)/g;
             let matches = this.customhtml.match(regex)
             if (matches != null){
-                return [...new Set(this.customhtml.match(regex))]
+                for (let i=0; i<matches.length; i++){
+                    matches[i] = matches[i].replace(/(##%%)|(%%##)/g, '')
+                }
+                return [...new Set(matches)]
             }
             return matches
         }
