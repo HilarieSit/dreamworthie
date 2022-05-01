@@ -2,7 +2,7 @@
     <div class="card">
         <img class="card-img-top" alt="Card image cap" :src="project.url">
         <div class="card-body">
-            <h5 class="card-title">{{project.name}}</h5>
+            <h5 class="card-title">{{project.title}}</h5>
             <p class="card-text">{{project.description}}</p>
             <button @click="redirectPage(project.name)" class="btn btn-success">Try it out!</button>
         </div>

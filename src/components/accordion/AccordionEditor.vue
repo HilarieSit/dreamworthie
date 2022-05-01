@@ -9,7 +9,7 @@
       <draggable v-model="content_list" item-key="id" ghost-class="ghost" @start="onStart" @end="onEnd">
         <template #item="{element}">
           <div class="accordion">
-            <accordion :content="element" v-bind:styling="styling[current_style]" @editContent='updateSection' />
+            <Accordion :content="element" v-bind:styling="styling[current_style]" @editContent='updateSection' />
             <button class="deletebtn" @click="deleteSection(element)"> &#10006; </button>
         </div>
         </template>
@@ -27,13 +27,13 @@
 </template>
 
 <script>
-import accordion from './AccordionShell.vue'
+import Accordion from './AccordionShell.vue'
 import draggable from 'vuedraggable'
 
 export default {
   name: 'App',
   components: {
-    accordion,
+    Accordion,
     draggable
   },
   data() {
@@ -142,7 +142,7 @@ body{
 }
 #accordion-window{
   border-radius: 5px;
-  padding: 25px 15px 15px;
+  padding: 5px;
   align-items: center;
   margin: 0 auto;
   background-color: white;
@@ -162,7 +162,7 @@ body{
 }
 .appbtn{
   width: 120px;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-right: 5px;
 }
 .deletebtn{
@@ -183,6 +183,8 @@ body{
   border: none;
   background-color: #eee;
   font-size: 40px;
+  margin: 0;
+  padding: 0 10px;
 }
 
 @media only screen and (max-width: 900px) {
