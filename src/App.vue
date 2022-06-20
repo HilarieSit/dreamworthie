@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"><b><span id="nav2Home" @click="redirecthome()">Template Editors</span><span id="navCurrent"> / {{currentRouteName}}</span></b></nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"><b><span id="nav2Home" @click="redirecthome()">Dreamworthie</span><span id="navCurrent"> / {{currentRouteName}}</span></b></nav>
       <router-view/>
   </div>
 </template>
