@@ -1,7 +1,7 @@
 <template>
   <div id="home">
-    <h1>Templates</h1>
-    <p id="homep">Edit template and copy and paste to add beautiful components on your Canvas pages!</p>
+    <h1>Instructional Design Tools</h1>
+    <p id="homep">Various tools for creating and editing components for your Canvas pages</p>
     <div id="homecard-container">
       <div class="homecard" v-for="project in projects" :key="project.id">
         <HomeCard v-bind:project="project" />
@@ -21,7 +21,7 @@ export default {
     return {
       projects: [
         {'id': 0, 'name': 'accordions', 'title': 'Accordion Editor', 'description': '', 'url': 'https://dreamworthie.s3.us-east-2.amazonaws.com/accordion-example.png'}, 
-        {'id': 1, 'name': 'custom', 'title': 'Fill in Custom Templates','description': '', 'url': 'https://picsum.photos/id/1037/200/300'}
+        {'id': 1, 'name': 'custom', 'title': 'Fill in Custom Templates','description': '', 'url': 'https://picsum.photos/id/1037/200/300'},
       ],
     }
   }

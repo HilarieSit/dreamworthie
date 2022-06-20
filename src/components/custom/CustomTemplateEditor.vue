@@ -34,7 +34,7 @@ import 'codemirror/addon/display/placeholder.js'
 export default {
     data() {
         return {
-            customhtml: '',
+            customhtml: 'I dreamt about ##%%My Dream%%##.',
             replacedhtml: '',
             editor: null, 
             text: '',
@@ -138,5 +138,7 @@ td, tr{
     padding-left: 3px;
     text-align: left;
 }
-
+.disabled{
+    pointer-events: none;
+}
 </style>
