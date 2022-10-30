@@ -7,7 +7,7 @@
       </div>
       <div id="accordion-window">
         <p> Table Caption: <input v-model="caption"></p>
-        <table>
+        <table id='edittable' v-bind:class="styling[current_style].table">
           <thead v-bind:style="styling[current_style].thead">
           <tr>
             <th scope="col" @blur="updateHeader($event, key)" contenteditable="true" v-for="[index, key] in keys.entries()" :key="key">
@@ -20,7 +20,7 @@
           </thead>
           <tbody v-bind:style="styling[current_style].tbody">
           <!-- <tr v-for="[index, item] in items.entries()" :key="item"> -->
-            <draggable style="display:contents;" item-key="id" v-model="items" ghost-class="ghost" @start="onStart" @end="onEnd">
+            <draggable style="display: contents;" item-key="id" v-model="items" ghost-class="ghost" @start="onStart" @end="onEnd">
             <template #item="{element}">
               <tr>
                 <td v-for="key in keys" :key="key">
@@ -57,9 +57,9 @@ export default {
   data() {
     return {
       styling: [
-        {'id': 0, 'thead': 'background-color: #B31B1B; color: white;', 'tbody': 'background-color: white; color: #3b3b3b;'}, 
-        {'id': 1, 'thead': 'background-color: #3c86b0; color: white;', 'tbody': 'background-color: #cccccc; color: #3b3b3b;'},
-        {'id': 2, 'thead': 'background-color: #fac249; color: #3b3b3b;', 'tbody': 'background-color: #fffbe9; color: #3b3b3b;'}, 
+        {'id': 0, 'table': 'borders', 'thead': 'background-color: #B31B1B; color: white;', 'tbody': 'background-color: white; color: #3b3b3b;'}, 
+        {'id': 1, 'table': 'noshadow', 'thead': 'background-color: #3c86b0; color: white;', 'tbody': 'background-color: #cccccc; color: #3b3b3b;'},
+        {'id': 2, 'table': 'noshadow', 'thead': 'background-color: #fac249; color: #3b3b3b;', 'tbody': 'background-color: #fffbe9; color: #3b3b3b;'}, 
       ],
       current_style: 0,
       text: 'Nothing copied.',
@@ -165,7 +165,7 @@ export default {
     // html string in textarea and copy to clipboard
     copy(){
       var cstyle = this.styling[this.current_style];
-      this.text = "<table width='100%'>"
+      this.text = "<table width='99%' class='"+cstyle.table+"'>"
       if (this.caption != ""){
         this.text += "<caption>"+this.caption+"</caption>"
       }
@@ -178,7 +178,7 @@ export default {
       for (var ii in this.items){
         this.text += "<tr>"
         for (var ik in this.keys){
-          this.text += "<td>" + String(this.items[ii].get(this.keys[ik])) + "</td>"
+          this.text += "<td>" + String(this.items[ii][this.keys[ik]]) + "</td>"
         }
         this.text += "</tr>"
       }
@@ -272,9 +272,6 @@ body{
 .deletebtn:hover{
   color: #aaa;
 }
-.table{
-  position: relative;
-}
 #prevStylebtn, #nextStylebtn{
   border: none;
   background-color: #eee;
@@ -284,7 +281,7 @@ body{
 }
 
 @media only screen and (max-width: 900px) {
-  #table-window{
+  #accordion-window{
     margin: 0 20px;
   }
 }
