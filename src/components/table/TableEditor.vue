@@ -57,9 +57,10 @@ export default {
   data() {
     return {
       styling: [
-        {'id': 0, 'table': 'borders', 'thead': 'background-color: #B31B1B; color: white;', 'tbody': 'background-color: white; color: #3b3b3b;'}, 
-        {'id': 1, 'table': 'noshadow', 'thead': 'background-color: #3c86b0; color: white;', 'tbody': 'background-color: #cccccc; color: #3b3b3b;'},
-        {'id': 2, 'table': 'noshadow', 'thead': 'background-color: #fac249; color: #3b3b3b;', 'tbody': 'background-color: #fffbe9; color: #3b3b3b;'}, 
+        {'id': 0, 'table': 'table-striped', 'thead': 'background-color: #B31B1B; color: white;', 'tbody': 'background-color: white; color: #3b3b3b;'}, 
+        {'id': 1, 'table': 'table-striped', 'thead': 'background-color: #3c86b0; color: white;', 'tbody': 'background-color: white; color: #3b3b3b;'}, 
+        {'id': 2, 'table': 'noshadow', 'thead': 'background-color: #3c86b0; color: white;', 'tbody': 'background-color: #cccccc; color: #3b3b3b;'},
+        {'id': 3, 'table': 'noshadow', 'thead': 'background-color: #fac249; color: #3b3b3b;', 'tbody': 'background-color: #fffbe9; color: #3b3b3b;'}, 
       ],
       current_style: 0,
       text: 'Nothing copied.',
@@ -198,6 +199,9 @@ export default {
 </script>
 
 <style>
+.table-striped tbody tr:nth-child(odd){
+  background-color: #eee;
+}
 .ghost{
   background-color: rgba(0,0,0,0.2);
 }
