@@ -6,11 +6,11 @@
         <button v-bind:disabled="current_style==styling.length-1 ? 'disabled' : null" id="nextStylebtn" @click="nextStyle()">&#x203A;</button>
       </div>
       <div id="accordion-window">
-        <p> Table Caption: <input v-model="caption"></p>
         <table id='edittable' v-bind:class="styling[current_style].table">
+          <caption v-bind:style="styling[current_style].caption" contenteditable="true" @blur="updateCaption"><b>{{caption}}</b></caption>
           <thead v-bind:style="styling[current_style].thead">
-          <tr>
-            <th scope="col" @blur="updateHeader($event, key)" contenteditable="true" v-for="[index, key] in keys.entries()" :key="key">
+          <tr v-bind:style="styling[current_style].border">
+            <th scope="col" @blur="updateHeader($event, key)" contenteditable="true" v-for="[index, key] in keys.entries()" :key="key" v-bind:style="styling[current_style].border">
               {{key}}
               <img class="delete" @click="deleteColumn(key)" :src='require("@/assets/trash.svg")' alt="trash" />
               <img v-if="index != keys.length-1" class="swap swap-col" @click="swapHeaders(key)" :src='require("@/assets/swap-horizontal.png")' alt="swap" />
@@ -19,14 +19,15 @@
           </tr>
           </thead>
           <tbody v-bind:style="styling[current_style].tbody">
-          <!-- <tr v-for="[index, item] in items.entries()" :key="item"> -->
             <draggable style="display: contents;" item-key="id" v-model="items" ghost-class="ghost" @start="onStart" @end="onEnd">
             <template #item="{element}">
-              <tr>
-                <td v-for="key in keys" :key="key">
-                  <TipTap v-bind:text="element[key]" @editText="updateText($event, element, key)" />
+              <tr v-bind:style="styling[current_style].border">
+                <td v-for="[index, key] in keys.entries()" :key="key" v-bind:style="styling[current_style].border">
+                  <TipTap v-if="rowheader && index==0" v-bind:text="'<b>'+element[key]+'</b>'" @editText="updateText($event, element, key)" />
+                  <TipTap v-else v-bind:text="element[key]" @editText="updateText($event, element, key)" />
                 </td>
-                <img v-if="this.items.length > 1" class="delete" @click="deleteRow(element)" :src='require("@/assets/trash.svg")' alt="trash" />
+                <span style="font-weight: 900; font-size: 20px;">&#8942;</span>
+                <img v-if="this.items.length > 1" class="delete" @click="deleteRow(element)" :src='require("@/assets/trash.svg")' alt="trash"/>
               </tr>
             </template>
             </draggable>
@@ -34,6 +35,7 @@
         </table>
       <button class="btn btn-primary appbtn" @click="addColumn()"> Add Column </button>
       <button class="btn btn-primary appbtn" @click="addRow()"> Add Row </button>
+      <button class="btn btn-primary appbtn" @click="toggleRowHeader()"> Row Header </button>
 
       <input id="copytext" class="copytext" 
         v-on:focus="$event.target.select()" 
@@ -57,19 +59,22 @@ export default {
   data() {
     return {
       styling: [
-        {'id': 0, 'table': 'table-striped', 'thead': 'background-color: #B31B1B; color: white;', 'tbody': 'background-color: white; color: #3b3b3b;'}, 
-        {'id': 1, 'table': 'table-striped', 'thead': 'background-color: #3c86b0; color: white;', 'tbody': 'background-color: white; color: #3b3b3b;'}, 
-        {'id': 2, 'table': 'noshadow', 'thead': 'background-color: #3c86b0; color: white;', 'tbody': 'background-color: #cccccc; color: #3b3b3b;'},
-        {'id': 3, 'table': 'noshadow', 'thead': 'background-color: #fac249; color: #3b3b3b;', 'tbody': 'background-color: #fffbe9; color: #3b3b3b;'}, 
+        {'id': 0, 'table': 'border', 'caption': 'color: #ffffff; background: #606366; padding-top: 5px; padding-bottom: 5px; border-top: 1px solid #cecece; border-left: 1px solid #cecece; border-right: 1px solid #cecece;', 'thead': 'color: #393f47; background-color: #ececec;', 'tbody': 'background-color: white;', 'border': 'border: 1px solid #cecece;'}, 
+        {'id': 1, 'table': 'border', 'caption': 'color: #ffffff; background: #3A708B; padding-top: 5px; padding-bottom: 5px; border-top: 1px solid #cecece; border-left: 1px solid #cecece; border-right: 1px solid #cecece;', 'thead': 'color: white; background-color: #4788A7;', 'tbody': 'background-color: white;', 'border': 'border: 1px solid #cecece;'}, 
+        {'id': 2, 'table': 'table-striped', 'caption': '', 'thead': 'background-color: #B31B1B; color: white;', 'tbody': 'background-color: white; color: #3b3b3b;'}, 
+        {'id': 3, 'table': 'table-striped', 'caption': '', 'thead': 'background-color: #3c86b0; color: white;', 'tbody': 'background-color: white; color: #3b3b3b;'}, 
+        {'id': 4, 'table': 'noshadow', 'caption': '', 'thead': 'background-color: #3c86b0; color: white;', 'tbody': 'background-color: #cccccc; color: #3b3b3b;'},
+        {'id': 5, 'table': 'noshadow', 'caption': '', 'thead': 'background-color: #fac249; color: #3b3b3b;', 'tbody': 'background-color: #fffbe9; color: #3b3b3b;'}, 
       ],
       current_style: 0,
       text: 'Nothing copied.',
       items: [
-        {id: 0, 'Header 1': 'Item 1', 'Header 2': 'Item 1' },
-        {id: 1, 'Header 1': 'Item 2', 'Header 2': 'Item 2' },
-        {id: 2, 'Header 1': 'Item 3', 'Header 2': 'Item 3' }
+        {id: 0, 'Header 1': 'Item 1a', 'Header 2': 'Item 1b' },
+        {id: 1, 'Header 1': 'Item 2a', 'Header 2': 'Item 2b' },
+        {id: 2, 'Header 1': 'Item 3a', 'Header 2': 'Item 3b' }
       ],
-      caption: ""
+      caption: "Table Caption",
+      rowheader: false
     }
   },
   computed:{
@@ -80,12 +85,23 @@ export default {
     }
   },
   methods:{
+    toggleRowHeader(){
+      if (this.rowheader){
+        this.rowheader = false
+      } else {
+        this.rowheader = true
+      }
+    },
+    updateCaption(event){
+      this.caption = event.target.innerText
+    },
     swapHeaders(key){
       for (var i = 0; i < this.items.length; i++) {
         let map = new Map(Object.entries(this.items[i]))
         let mapArr = Array.from(map)
         let index = Array.from(map.keys()).indexOf(key)
         var b = mapArr[index];
+        console.log(b)
         mapArr[index] = mapArr[index+1];
         mapArr[index+1] = b
         map.clear();
@@ -118,7 +134,6 @@ export default {
     },
     // delete selected row
     deleteRow(item){
-      console.log(item)
       const index = this.items.findIndex(s => s["id"] === item["id"]);
       this.items.splice(index, 1);
     },
@@ -168,18 +183,22 @@ export default {
       var cstyle = this.styling[this.current_style];
       this.text = "<table width='99%' class='"+cstyle.table+"'>"
       if (this.caption != ""){
-        this.text += "<caption>"+this.caption+"</caption>"
+        this.text += "<b><caption style='"+cstyle.caption+"'>"+this.caption+"</caption></b>"
       }
       this.text += "<thead style='"+cstyle.thead+"'><tr>"
       for (let ik in this.keys){
-        this.text += "<th scope='col'>" + String(this.keys[ik]) + "</th>"
+        this.text += "<th scope='col' style='"+cstyle.border+"'>" + String(this.keys[ik]) + "</th>"
       }
       this.text += "</tr></thead>"
-      this.text += "<tbody style='"+cstyle.tbody+"'>"
+      this.text += "<tbody style='"+cstyle.border+"'>"
       for (var ii in this.items){
         this.text += "<tr>"
         for (var ik in this.keys){
-          this.text += "<td>" + String(this.items[ii][this.keys[ik]]) + "</td>"
+          if (this.rowheader && ik==0) {
+            this.text += "<td scope='row' style='"+cstyle.border+"'><b>" + String(this.items[ii][this.keys[ik]]) + "</b></td>"
+          } else {
+            this.text += "<td style='"+cstyle.border+"'>" + String(this.items[ii][this.keys[ik]]) + "</td>"
+          }
         }
         this.text += "</tr>"
       }
@@ -199,6 +218,21 @@ export default {
 </script>
 
 <style>
+table{
+  caption-side: top;
+  border: none !important;
+  border-collapse: collapse !important;
+}
+table td, table tr{
+  border: none;
+  outline: none;
+}
+table caption{
+  text-align: center;
+}
+.noshadow td, .table-striped td, .noshadow th, .table-striped th, .noshadow tr, .table-striped tr{
+  border: 1px solid white !important;
+}
 .table-striped tbody tr:nth-child(odd){
   background-color: #eee;
 }
