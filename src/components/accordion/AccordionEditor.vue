@@ -93,7 +93,7 @@ export default {
     // html string in textarea and copy to clipboard
     copy(){
       var cstyle = this.styling[this.current_style];
-      this.text = "<div style='margin-bottom: 2px'>"
+      this.text = "<div style='margin-bottom: 2px; overflow: hidden; padding-bottom: 2px;'>"
       for (let i = 0; i < this.content_list.length; i++) { 
         var ccontent = this.content_list[i];
         this.text += "<details style='"+cstyle.details+"'><summary style='"+cstyle.summary+"'>"+ccontent.title+"</summary><div style='"+cstyle.textdiv+"'>"+ccontent.text+"</div></details>";
@@ -124,9 +124,6 @@ p{
   opacity: 0;
   position: absolute;
   left: -999999px;
-}
-nav{
-  padding-left: 15px;
 }
 .ghost{
   opacity: 30%;
