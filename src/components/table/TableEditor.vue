@@ -23,10 +23,10 @@
             <template #item="{element}">
               <tr v-bind:style="styling[current_style].border">
                 <td v-for="[index, key] in keys.entries()" :key="key" v-bind:style="styling[current_style].border">
-                  <TipTap v-if="rowheader && index==0" v-bind:text="'<b>'+element[key]+'</b>'" @editText="updateText($event, element, key)" />
-                  <TipTap v-else v-bind:text="element[key]" @editText="updateText($event, element, key)" />
+                  <TipTap v-if="rowheader && index==0" v-bind:bold="true" v-bind:text="element[key]" @editText="updateText($event, element, key)" />
+                  <TipTap v-else v-bind:bold="false" v-bind:text="element[key]" @editText="updateText($event, element, key)" />
                 </td>
-                <span style="font-weight: 900; font-size: 20px;">&#8942;</span>
+                <span class="swap-row" style="font-weight: 900; font-size: 20px;">&#8942;</span>
                 <img v-if="this.items.length > 1" class="delete" @click="deleteRow(element)" :src='require("@/assets/trash.svg")' alt="trash"/>
               </tr>
             </template>
@@ -115,7 +115,7 @@ export default {
       let nRows = this.items.length;
       item["id"] = nRows
       for (var i = 0; i < this.keys.length; i++) {
-        item[this.keys[i]] = ""
+        item[this.keys[i]] = "Item"
       }
       this.items.push(item);
     },
@@ -218,6 +218,16 @@ export default {
 </script>
 
 <style>
+.swap-row{
+  cursor: move;
+}
+.delete-col, .swap-col{
+  float: right;
+}
+table tr td:last-child{ /* last-child returns the last instance of the td */
+   max-width:50px;
+   /* additional styles as required */
+ }
 table{
   caption-side: top;
   border: none !important;
@@ -242,10 +252,6 @@ table caption{
 td {
   text-align: left;
 }
-.swap-col{
-  float: right;
-  margin-right: -5px;
-}
 .delete, .swap{
   cursor: pointer;
   width: 20px;
@@ -254,6 +260,9 @@ td {
   background-color: rgba(0,0,0,0);
   font-weight: bolder;
 }
+/* .swap-row{
+  cursor: move;
+} */
 p{
   margin: 12px 0;
 }

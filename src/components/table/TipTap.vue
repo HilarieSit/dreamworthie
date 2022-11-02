@@ -80,7 +80,8 @@ export default {
   },
 
   props: {
-    text: String
+    text: String,
+    bold: Boolean
   },
 
   emits: ['editText'],
@@ -90,8 +91,12 @@ export default {
       editor: null,
     }
   },
-
   mounted() {
+    if (this.bold){
+      var text = '<b>'+this.text+'</b>'
+    } else {
+      text = this.text
+    }
     this.editor = new Editor({
       extensions: [
         StarterKit,
@@ -103,7 +108,7 @@ export default {
           types: ['heading', 'paragraph'],
         })
       ],
-      content: this.text,
+      content: text,
       onUpdate: ({ editor }) => {
         var html = editor.getHTML();
         this.$emit('editText', html);
