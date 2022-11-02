@@ -7,7 +7,7 @@
         <textarea v-model="customhtml" id="cm-editor"></textarea>
         <div v-if="keywords" id="keywords-box">
             <p> Complete the form below and copy HTML.</p>
-            <table>
+            <table id="keywordstable">
                 <tr class="keywords" v-for="keyword in keywords" :key="keyword">
                     <td class="keywords-label"><label><b>{{keyword}}</b></label> </td>
                     <td><div class="keywords-text" contenteditable="true" @blur="onDivBlur($event, keyword)"></div></td>
@@ -34,7 +34,7 @@ import 'codemirror/addon/display/placeholder.js'
 export default {
     data() {
         return {
-            customhtml: 'I dreamt about ##%%My Dream%%##.',
+            customhtml: '',
             replacedhtml: '',
             editor: null, 
             text: '',
@@ -86,7 +86,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #keywords-box{
     margin: 30px 25px;
 }

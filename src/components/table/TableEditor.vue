@@ -35,7 +35,7 @@
         </table>
       <button class="btn btn-primary appbtn" @click="addColumn()"> Add Column </button>
       <button class="btn btn-primary appbtn" @click="addRow()"> Add Row </button>
-      <button class="btn btn-primary appbtn" @click="toggleRowHeader()"> Row Header </button>
+      <button class="btn btn-primary appbtn" id="rowheadbtn" @click="toggleRowHeader()"> Row Header </button>
 
       <input id="copytext" class="copytext" 
         v-on:focus="$event.target.select()" 
@@ -86,10 +86,13 @@ export default {
   },
   methods:{
     toggleRowHeader(){
+      let rowheadbtn = document.getElementById("rowheadbtn");
       if (this.rowheader){
-        this.rowheader = false
+        this.rowheader = false;
+        rowheadbtn.classList.remove('active');
       } else {
-        this.rowheader = true
+        this.rowheader = true;
+        rowheadbtn.classList.add('active');
       }
     },
     updateCaption(event){
@@ -217,12 +220,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .swap-row{
   cursor: move;
 }
 .delete-col, .swap-col{
   float: right;
+}
+table{
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
 }
 table th{
   resize: horizontal; 

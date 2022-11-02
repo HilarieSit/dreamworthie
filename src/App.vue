@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #app{
   background-color: #eee;
 }
@@ -35,5 +35,8 @@ export default {
 }
 #navCurrent{
   color: #888;
+}
+.navbar{
+  padding-left: 15px;
 }
 </style>

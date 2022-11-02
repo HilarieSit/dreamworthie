@@ -20,8 +20,8 @@ export default {
   data() {
     return {
       projects: [
-        {'id': 0, 'name': 'accordions', 'title': 'Accordion Editor', 'description': '', 'url': 'https://dreamworthie.s3.us-east-2.amazonaws.com/accordion-example.png'}, 
-        {'id': 1, 'name': 'tables', 'title': 'Table Editor', 'description': '', 'url': 'https://picsum.photos/id/1050/200/300'},
+        {'id': 0, 'name': 'accordions', 'title': 'Accordion Editor', 'description': '', 'url': 'https://picsum.photos/id/1057/200/300'}, 
+        {'id': 1, 'name': 'tables', 'title': 'Table Editor', 'description': '', 'url': 'https://picsum.photos/id/1049/200/300'},
         {'id': 2, 'name': 'custom', 'title': 'Fill in Custom Templates', 'description': '', 'url': 'https://picsum.photos/id/1037/200/300'}
       ]
     }
