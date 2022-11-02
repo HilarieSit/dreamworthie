@@ -4,7 +4,7 @@
     <p id="homep">Tools for creating and editing components for your Canvas pages</p>
     <div id="homecard-container">
       <div class="homecard" v-for="project in projects" :key="project.id">
-        <HomeCard v-bind:project="project" />
+        <HomeCard v-bind:project="project" v-bind:ribbon="project.new" />
       </div>
     </div>
   </div>
@@ -20,9 +20,9 @@ export default {
   data() {
     return {
       projects: [
-        {'id': 0, 'name': 'accordions', 'title': 'Accordion Editor', 'description': '', 'url': 'https://picsum.photos/id/1057/200/300'}, 
-        {'id': 1, 'name': 'tables', 'title': 'Table Editor', 'description': '', 'url': 'https://picsum.photos/id/1049/200/300'},
-        {'id': 2, 'name': 'custom', 'title': 'Fill in Custom Templates', 'description': '', 'url': 'https://picsum.photos/id/1037/200/300'}
+        {'id': 0, 'new': 'false', 'name': 'accordions', 'title': 'Accordion Editor', 'description': '', 'url': 'https://picsum.photos/id/1057/200/300'}, 
+        {'id': 1, 'new': 'true', 'name': 'tables', 'title': 'Table Editor', 'description': '', 'url': 'https://picsum.photos/id/1049/200/300'},
+        {'id': 2, 'new': 'false', 'name': 'custom', 'title': 'Fill in Custom Templates', 'description': '', 'url': 'https://picsum.photos/id/1037/200/300'}
       ]
     }
   }
