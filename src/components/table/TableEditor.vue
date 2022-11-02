@@ -12,8 +12,8 @@
           <tr v-bind:style="styling[current_style].border">
             <th scope="col" @blur="updateHeader($event, key)" contenteditable="true" v-for="[index, key] in keys.entries()" :key="key" v-bind:style="styling[current_style].border">
               {{key}}
-              <img class="delete" @click="deleteColumn(key)" :src='require("@/assets/trash.svg")' alt="trash" />
               <img v-if="index != keys.length-1" class="swap swap-col" @click="swapHeaders(key)" :src='require("@/assets/swap-horizontal.png")' alt="swap" />
+              <img class="delete delete-col" @click="deleteColumn(key)" :src='require("@/assets/trash.svg")' alt="trash" />
             </th>
             <div></div>
           </tr>
@@ -223,6 +223,10 @@ export default {
 }
 .delete-col, .swap-col{
   float: right;
+}
+table th{
+  resize: horizontal; 
+  overflow: auto;
 }
 table tr td:last-child{ /* last-child returns the last instance of the td */
    max-width:50px;
