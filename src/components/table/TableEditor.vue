@@ -33,7 +33,6 @@
             </draggable>
           </tbody>
         </table>
-        {{items}}
       <button class="btn btn-primary appbtn" @click="addColumn()"> Add Column </button>
       <button class="btn btn-primary appbtn" @click="addRow()"> Add Row </button>
       <button class="btn btn-primary appbtn" id="rowheadbtn" @click="toggleRowHeader()"> Row Header </button>
