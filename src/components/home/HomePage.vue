@@ -29,6 +29,11 @@ export default {
       ]
     }
   },
+  watch: {
+  '$route' () {
+      this.init();
+    }
+  },
   methods:{
     init: function() {
         let container = document.getElementById('webgl');
