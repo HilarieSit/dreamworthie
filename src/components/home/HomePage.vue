@@ -29,11 +29,6 @@ export default {
       ]
     }
   },
-  watch: {
-  '$route' () {
-      this.init();
-    }
-  },
   methods:{
     init: function() {
         let container = document.getElementById('webgl');
@@ -114,7 +109,10 @@ export default {
       } 
   },
   mounted() {
-      this.init();
+    this.init();
+  },
+  beforeRouteUpdate() {
+    this.init()
   }
 }
 </script>
