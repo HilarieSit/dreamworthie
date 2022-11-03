@@ -33,6 +33,7 @@
             </draggable>
           </tbody>
         </table>
+        {{items}}
       <button class="btn btn-primary appbtn" @click="addColumn()"> Add Column </button>
       <button class="btn btn-primary appbtn" @click="addRow()"> Add Row </button>
       <button class="btn btn-primary appbtn" id="rowheadbtn" @click="toggleRowHeader()"> Row Header </button>
@@ -74,7 +75,8 @@ export default {
         {id: 2, 'Header 1': 'Item 3a', 'Header 2': 'Item 3b' }
       ],
       caption: "Table Caption",
-      rowheader: false
+      rowheader: false,
+      columnkey: 2
     }
   },
   computed:{
@@ -124,9 +126,9 @@ export default {
     },
     // add new Column
     addColumn(){
-      let nKeys = this.keys.length;
+      this.columnkey += 1
       for (var i = 0; i < this.items.length; i++) {
-        this.items[i]["Header "+String(nKeys+1)] = "";
+        this.items[i]["Header "+String(this.columnkey)] = "Item";
       }
     },
     // delete selected column

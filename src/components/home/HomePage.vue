@@ -13,8 +13,8 @@
 
 <script>
 import HomeCard from './HomeCard.vue'
-import  * as THREE from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
+// import  * as THREE from 'three';
+// import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 
 export default {
   components: {
@@ -29,91 +29,88 @@ export default {
       ]
     }
   },
-  methods:{
-    init: function() {
-        let container = document.getElementById('webgl');
+  // methods:{
+  //   init: function() {
+  //       let container = document.getElementById('webgl');
 
-        let camera = new THREE.PerspectiveCamera(100, container.clientWidth/container.clientHeight, 0.01, 10);
+  //       let camera = new THREE.PerspectiveCamera(100, container.clientWidth/container.clientHeight, 0.01, 10);
 
-        let scene = new THREE.Scene();
+  //       let scene = new THREE.Scene();
 
-        const controls = new OrbitControls(camera, container)
-        controls.enableDamping = true
+  //       const controls = new OrbitControls(camera, container)
+  //       controls.enableDamping = true
 
-        const textureLoader = new THREE.TextureLoader()
-        textureLoader.load(
-          'https://dreamworthie.s3.us-east-2.amazonaws.com/particles/8.png',
+  //       const textureLoader = new THREE.TextureLoader()
+  //       textureLoader.load(
+  //         'https://dreamworthie.s3.us-east-2.amazonaws.com/particles/8.png',
 
-          function (texture) {
-            const particlesGeometry = new THREE.BufferGeometry()
-            const count = 1000
+  //         function (texture) {
+  //           const particlesGeometry = new THREE.BufferGeometry()
+  //           const count = 1000
 
-            const positions = new Float32Array(count*3)
+  //           const positions = new Float32Array(count*3)
 
-            for(let i = 0; i < count + 3; i++){
-              positions[i] = (Math.random() - 0.5) * 5
-            }
+  //           for(let i = 0; i < count + 3; i++){
+  //             positions[i] = (Math.random() - 0.5) * 5
+  //           }
 
-            particlesGeometry.setAttribute(
-              'position',
-              new THREE.BufferAttribute(positions, 3)
-            )
+  //           particlesGeometry.setAttribute(
+  //             'position',
+  //             new THREE.BufferAttribute(positions, 3)
+  //           )
 
-            const particlesMaterial = new THREE.PointsMaterial()
-            particlesMaterial.size = 0.05
-            particlesMaterial.sizeAttenuation = true
-            particlesMaterial.color = new THREE.Color('#ffffbf')
-            particlesMaterial.alphaMap = texture
-            particlesMaterial.transparent = true
-            particlesMaterial.depthWrite = false
-            particlesMaterial.blending = THREE.AdditiveBlending
+  //           const particlesMaterial = new THREE.PointsMaterial()
+  //           particlesMaterial.size = 0.05
+  //           particlesMaterial.sizeAttenuation = true
+  //           particlesMaterial.color = new THREE.Color('#ffffbf')
+  //           particlesMaterial.alphaMap = texture
+  //           particlesMaterial.transparent = true
+  //           particlesMaterial.depthWrite = false
+  //           particlesMaterial.blending = THREE.AdditiveBlending
 
-            const particles = new THREE.Points(particlesGeometry, particlesMaterial)
-            scene.add(particles)
+  //           const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+  //           scene.add(particles)
 
-            let renderer = new THREE.WebGLRenderer({antialias: true, alpha: 1});
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            renderer.setClearColor(0x000000, 0);
-            container.appendChild(renderer.domElement);
-            const tick = () =>
-            {
-              particles.rotation.y += 0.0005
-              particles.rotation.x += 0.0005
-              particles.rotation.z += 0.0005
+  //           let renderer = new THREE.WebGLRenderer({antialias: true, alpha: 1});
+  //           renderer.setSize(container.clientWidth, container.clientHeight);
+  //           renderer.setClearColor(0x000000, 0);
+  //           container.appendChild(renderer.domElement);
+  //           const tick = () =>
+  //           {
+  //             particles.rotation.y += 0.0005
+  //             particles.rotation.x += 0.0005
+  //             particles.rotation.z += 0.0005
           
-              controls.update()
-              renderer.render(scene, camera);
+  //             controls.update()
+  //             renderer.render(scene, camera);
 
-              window.requestAnimationFrame(tick)
-            }
-            tick()
-            const sizes = {
-                width: window.innerWidth,
-                height: window.innerHeight
-            }
-            window.addEventListener('resize', () =>
-            {
-                // Update sizes
-                sizes.width = window.innerWidth
-                sizes.height = window.innerHeight
+  //             window.requestAnimationFrame(tick)
+  //           }
+  //           tick()
+  //           const sizes = {
+  //               width: window.innerWidth,
+  //               height: window.innerHeight
+  //           }
+  //           window.addEventListener('resize', () =>
+  //           {
+  //               // Update sizes
+  //               sizes.width = window.innerWidth
+  //               sizes.height = window.innerHeight
 
-                // Update camera
-                camera.aspect = sizes.width / sizes.height
-                camera.updateProjectionMatrix()
+  //               // Update camera
+  //               camera.aspect = sizes.width / sizes.height
+  //               camera.updateProjectionMatrix()
 
-                // Update renderer
-                renderer.setSize(sizes.width, sizes.height)
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-            })
-          })
-      } 
-  },
-  mounted() {
-    this.init();
-  },
-  beforeRouteUpdate() {
-    this.init()
-  }
+  //               // Update renderer
+  //               renderer.setSize(sizes.width, sizes.height)
+  //               renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+  //           })
+  //         })
+  //     } 
+  // },
+  // mounted() {
+  //   this.init();
+  // }
 }
 </script>
 
