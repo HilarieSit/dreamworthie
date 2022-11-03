@@ -14,29 +14,40 @@ export default {
         return this.$route.name;
     }
   },
-  methods:{
+  methods: {
     redirecthome(){
       this.$router.push('/') 
     }
-
   }
 }
 </script>
 
 <style scoped>
+html{
+  height: 100%;
+  margin: auto;
+  background-color: #101e27;
+}
+body{
+  background-color: #101e27;
+  overflow-y: hidden;
+}
 #app{
-  background-color: #eee;
+  min-height: 100vh;
+  background-color: #101e27;
 }
 #nav2Home{
   cursor: pointer;
+  color: #8B949E;
 }
 #nav2Home:hover{
   color: #008000;
 }
 #navCurrent{
-  color: #888;
+  color: white;
 }
 .navbar{
   padding-left: 15px;
+  background-color: rgba(0,0,0,0.3) !important;
 }
 </style>

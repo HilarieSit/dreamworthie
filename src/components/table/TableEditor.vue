@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
+  <div id="table">
       <div id="accordion-header">
-        <button v-bind:disabled="current_style==0 ? 'disabled' : null" id="prevStylebtn" @click="prevStyle()">&#x2039;</button>
+        <button class="btn-menu" v-bind:disabled="current_style==0 ? 'disabled' : null" id="prevStylebtn" @click="prevStyle()">&#x2039;</button>
         <h1>Table Style {{current_style+1}}</h1> 
-        <button v-bind:disabled="current_style==styling.length-1 ? 'disabled' : null" id="nextStylebtn" @click="nextStyle()">&#x203A;</button>
+        <button class="btn-menu" v-bind:disabled="current_style==styling.length-1 ? 'disabled' : null" id="nextStylebtn" @click="nextStyle()">&#x203A;</button>
       </div>
       <div id="accordion-window">
         <table id='edittable' v-bind:class="styling[current_style].table">
@@ -221,6 +221,10 @@ export default {
 </script>
 
 <style scoped>
+.btn-menu{
+  background-color: rgba(0,0,0,0) !important;
+  color: white;
+}
 .swap-row{
   cursor: move;
 }
@@ -293,7 +297,8 @@ body{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  background-color: #101e27;
+  height: calc(100vh - 50px) !important;
 }
 #accordion-window{
   border-radius: 5px;
@@ -301,7 +306,7 @@ body{
   align-items: center;
   margin: 0 auto;
   background-color: white;
-  border: 2px #888 solid;
+  border: 5px #888 solid;
   max-width: 900px;
 }
 #accordion-header{

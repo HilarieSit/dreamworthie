@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
+  <div id="accordion">
       <div id="accordion-header">
-        <button v-bind:disabled="current_style==0 ? 'disabled' : null" id="prevStylebtn" @click="prevStyle()">&#x2039;</button>
+        <button class="btn-menu" v-bind:disabled="current_style==0 ? 'disabled' : null" id="prevStylebtn" @click="prevStyle()">&#x2039;</button>
         <h1>Accordion Style {{current_style+1}}</h1> 
-        <button v-bind:disabled="current_style==styling.length-1 ? 'disabled' : null" id="nextStylebtn" @click="nextStyle()">&#x203A;</button>
+        <button class="btn-menu" v-bind:disabled="current_style==styling.length-1 ? 'disabled' : null" id="nextStylebtn" @click="nextStyle()">&#x203A;</button>
       </div>
       <div id="accordion-window">
       <draggable v-model="content_list" item-key="id" ghost-class="ghost" @start="onStart" @end="onEnd">
@@ -114,6 +114,16 @@ export default {
 </script>
 
 <style>
+.btn-menu{
+  background-color: rgba(0,0,0,0) !important;
+  color: white;
+}
+h1{
+  color: white;
+  margin-top: 40px;
+  font-size: 35px;
+  font-weight: 900;
+}
 p{
   margin: 12px 0;
 }
@@ -135,7 +145,7 @@ body{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  background-color: #101e27;
 }
 #accordion-window{
   border-radius: 5px;
@@ -143,13 +153,14 @@ body{
   align-items: center;
   margin: 0 auto;
   background-color: white;
-  border: 2px #888 solid;
+  border: 5px #888 solid;
   max-width: 900px;
 }
 #accordion-header{
   margin: 25px 0 0;
   text-align: center;
   padding-bottom: 10px;
+  z-index: 2 !important;
 }
 #accordion-header h1{
   width: 100%;
@@ -187,6 +198,9 @@ body{
 @media only screen and (max-width: 900px) {
   #accordion-window{
     margin: 0 20px;
+  }
+  h1{
+    font-size: 25px;
   }
 }
 

@@ -111,17 +111,24 @@ export default {
     max-width: 900px;
     width: 100%;
     margin: 0 auto;
+    padding-bottom: 20px;
 }
 #custom-text{
     margin: 45px 25px 20px;
 }
+p{
+    font-size: 20px;
+    color: #8B949E;
+    text-align: center;
+}
 #custom-text h1{
     text-align: center;
+    color: white;
 }
 table{
     width: 100%;
     border-radius: 5px !important;
-    border: 2px #888 solid;
+    border: 2px white solid;
     text-align: center;
     border-collapse: collapse;
 }

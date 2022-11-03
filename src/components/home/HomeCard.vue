@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <div v-if="ribbon=='true'" class="ribbon ribbon-top-right"><span>new</span></div>
+        <div v-if="ribbon==true" class="ribbon ribbon-top-right"><span>new</span></div>
         <img class="card-img-top" alt="Card image cap" :src="project.url">
         <div class="card-body">
             <h5 class="card-title">{{project.title}}</h5>
@@ -26,9 +26,11 @@ export default {
 
 <style>
 .card{
-    border: 2px #888 solid;
+    background-color: rgba(0,0,0,0.3);
+    border: 3px white solid;
     padding: 5px;
     width: 19rem;
+    color: white;
 }
 .card-img-top{
     height: 200px;
