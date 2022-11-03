@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div v-if="ribbon==true" class="ribbon ribbon-top-right"><span>new</span></div>
-        <img class="card-img-top" alt="Card image cap" :src="project.url">
+        <!-- <img class="card-img-top" alt="Card image cap" :src="project.url"> -->
         <div class="card-body">
             <h5 class="card-title">{{project.title}}</h5>
             <p class="card-text">{{project.description}}</p>
