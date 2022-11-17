@@ -12,10 +12,10 @@
         <th>Type</th>
         <th>Name</th>
     </tr>
-    <draggable style="display: contents;" item-key="id" v-model="rows" ghost-class="ghost">
+    <draggable style="display: contents;" item-key="id" v-model="rows" ghost-class="ghost" handle='.handle'>
     <template #item="{element}">
     <tr>
-        <img class="drag" :src='require("@/assets/three-vertical-dots.png")' alt="vertical-dots"/>
+        <img class="drag handle" :src='require("@/assets/three-vertical-dots.png")' alt="vertical-dots"/>
         <td>
             <select class="pagetype" form="form" name="pagetype">        
                 <option value="module">Module</option>
