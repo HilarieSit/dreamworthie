@@ -72,6 +72,7 @@ export default {
                 let popup = window.open(url, "popup", "width=700,height=420")
                 var intervalId;
                 intervalId = setInterval(function() {
+                    console.log(popup.location.href)
                     if (popup.location.href == 'https://www.dreamworthie.com/wait'){
                         clearInterval(intervalId);
                         axios.get("https://dreamworthie-populate-canvas.herokuapp.com/getcode")
