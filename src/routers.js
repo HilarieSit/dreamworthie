@@ -3,6 +3,8 @@ import Home from './components/home/HomePage'
 import AccordionEditor from './components/accordion/AccordionEditor'
 import TableEditor from './components/table/TableEditor'
 import TemplateEditor from './components/custom/CustomTemplateEditor'
+import CanvasCourse from './components/canvas/CanvasForm'
+import WaitingScreen from './components/canvas/WaitingScreen'
 
 const routes = [
     {
@@ -24,6 +26,16 @@ const routes = [
         path:'/tables',
         name:'Tables',
         component: TableEditor
+    },
+    {
+        path:'/canvas',
+        name:'Populate Canvas Course',
+        component: CanvasCourse
+    },
+    {
+        path:'/wait',
+        name:'Waiting Screen',
+        component: WaitingScreen
     }
 ]
 
