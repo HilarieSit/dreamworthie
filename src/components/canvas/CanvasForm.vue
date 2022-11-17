@@ -69,14 +69,14 @@ export default {
             axios.get("https://dreamworthie-populate-canvas.herokuapp.com/geturl")
             .then( function (response) {
                 let url = response.data.data.url
-                console.log(url)
                 let popup = window.open(url, "popup", "width=700,height=420")
                 var intervalId;
                 intervalId = setInterval(function() {
-                    if (popup.location.href == 'https://dreamworthie.com/wait'){
+                    if (popup.location.href == 'https://www.dreamworthie.com/wait'){
                         clearInterval(intervalId);
                         axios.get("https://dreamworthie-populate-canvas.herokuapp.com/getcode")
                         .then( function (response) {
+                            console.log('hi')
                             let code = response.data.data.code
                             let mydata = {
                                 'grant_type': 'authorization_code',
@@ -87,6 +87,7 @@ export default {
                             }
                             axios.post("https://dreamworthie-populate-canvas.herokuapp.com/redirect", mydata)
                             .then(function (response) {
+                                console.log('hi')
                                 let token = response.data.access_token
                                 let data = {}
                                 data.token = token
@@ -95,7 +96,7 @@ export default {
                                 axios.post("https://dreamworthie-populate-canvas.herokuapp.com/home", data)
                                 .then(function () {
                                     popup.close()
-                                window.location.reload()
+                                    window.location.reload()
                                 })
                                 .catch(function (error) {
                                     console.log(error);
