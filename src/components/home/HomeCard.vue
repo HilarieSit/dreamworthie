@@ -3,7 +3,7 @@
         <div v-if="ribbon==true" class="ribbon ribbon-top-right"><span>new</span></div>
         <!-- <img class="card-img-top" alt="Card image cap" :src="project.url"> -->
         <div class="card-body">
-            <h5 class="card-title">{{project.title}}</h5>
+            <h4 class="card-title">{{project.title}}</h4>
             <p class="card-text">{{project.description}}</p>
             <button @click="redirectPage(project.name)" class="btn btn-success">Try it out!</button>
         </div>
@@ -24,10 +24,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .card{
     background-color: rgba(0,0,0,0.3);
-    border: 3px white solid;
     padding: 5px;
     width: 19rem;
     color: white;
