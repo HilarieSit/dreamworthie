@@ -67,7 +67,7 @@ footer {
   right: 0;
   bottom: 0;
   margin: 0;
-  padding: 15px 0 0 0;
+  padding: 0;
   text-align: center;
   width: 100%;
   display: inline-block;
