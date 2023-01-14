@@ -7,7 +7,9 @@
         <router-link to="/about"><li>About</li></router-link>
       </ul>
     </nav>
-    <router-view/>
+    <div id="routerview">
+      <router-view/>
+    </div>
     <footer>
         <p> &copy; Dreamworthie, 2022 </p>
     </footer>
@@ -67,7 +69,7 @@ footer {
   right: 0;
   bottom: 0;
   margin: 0;
-  padding: 0;
+  padding: 15px 0 0;
   text-align: center;
   width: 100%;
   display: inline-block;
@@ -77,5 +79,8 @@ footer p {
   text-align: center;
   color: #8B949E;
   font-size: 20px;
+}
+#routerview{
+  min-height: calc(100vh - 111px);
 }
 </style>
