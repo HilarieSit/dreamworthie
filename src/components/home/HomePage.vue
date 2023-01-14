@@ -72,6 +72,7 @@ h1{
   font-size: 35px;
   font-weight: 900;
   z-index: 2 !important;
+  margin: 0;
 }
 
 #banner h2{
