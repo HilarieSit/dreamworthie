@@ -113,12 +113,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .btn-menu{
   background-color: rgba(0,0,0,0) !important;
   color: white;
 }
-h1{
+#accordion-header h1{
   color: white;
   margin-top: 40px;
   font-size: 35px;
@@ -199,7 +199,7 @@ body{
   #accordion-window{
     margin: 0 20px;
   }
-  h1{
+  #accordion-header h1{
     font-size: 25px;
   }
 }

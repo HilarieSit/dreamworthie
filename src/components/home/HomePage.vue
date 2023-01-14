@@ -42,9 +42,7 @@ export default {
         {'id': 0, 'name': 'accordions', 'title': 'Accordion Editor', 'description': '', 'url': 'https://picsum.photos/id/1057/200/300'}, 
         {'id': 1, 'name': 'tables', 'title': 'Table Editor', 'description': '', 'url': 'https://picsum.photos/id/1049/200/300'},
         {'id': 2, 'name': 'custom', 'title': 'Fill in Templates', 'description': '', 'url': 'https://picsum.photos/id/1037/200/300'}
-      ],
-      renderer: null,
-      texture: null
+      ]
     }
   }
 }
@@ -72,7 +70,7 @@ h1{
   font-size: 35px;
   font-weight: 900;
   z-index: 2 !important;
-  margin: 0;
+  margin: 0 0 10px;
 }
 
 #banner h2{
