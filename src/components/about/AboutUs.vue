@@ -2,7 +2,7 @@
     <div id="about">
         <div id="banner">
             <h1>About Us</h1>
-            <h2>Our mission is provide tools and information about web accessibility. </h2>
+            <h2>Our mission is to provide tools and information about web accessibility. </h2>
         </div>
         <div class="scallop-up"></div>
         <div id="content">

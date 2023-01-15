@@ -28,7 +28,7 @@ export default {
 .card{
     background-color: rgba(0,0,0,0.3);
     padding: 5px;
-    width: 19rem;
+    width: 18rem;
     color: white;
 }
 .card-img-top{

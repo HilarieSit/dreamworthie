@@ -8,7 +8,8 @@
     <div class="scallop-up"></div>
     <div id="content">
       <div id="wysiwyg">
-        <h3 data-aos="fade-up"> WYSIWYG Editors </h3>
+        <h3 data-aos="fade-up"> WYSIWYG Editors</h3>
+        <p data-aos="fade-up"> Create stylish and accessible Canvas components with our WYSIWYG Editors. </p>
         <div id="homecard-container">
           <div class="homecard" data-aos="fade-up" v-for="project in projects" :key="project.id">
             <HomeCard v-bind:project="project" v-bind:ribbon="project.new" />
@@ -16,10 +17,11 @@
         </div>
       </div>
       <div id="model">
-        <h3 data-aos="fade-up"> Accessible 3D Model Package </h3>
+        <h3 data-aos="fade-up"> Accessible 3D Models </h3>
+        <p data-aos="fade-up"> a3model aims to improve the accessibility of Three.js models by offering keyboard navigation for hover and click events, focus indication on meshes/objects, mobile touch events, cursor updates, and roles/descriptions for screen readers. </p>
         <div id="arduino-container">
-          <img id="arduino" data-aos="fade-right" alt="Arduino metro mini 3d model" src="https://dreamworthie.s3.us-east-2.amazonaws.com/arduino.png">
-        <div data-aos="fade-up">
+        <img id="arduino" data-aos="fade-right" alt="Arduino metro mini 3d model" src="https://dreamworthie.s3.us-east-2.amazonaws.com/arduino.png">
+        <div id="arduino-source" data-aos="fade-up">
           <p>Npm Package <a href="https://www.npmjs.com/package/a3model" target="_blank" rel="noopener noreferrer"><button class="btn btn-success">Try it out!</button></a></p>
           <p>Open Source Code <a href="https://github.com/HilarieSit/a3" target="_blank" rel="noopener noreferrer"><button class="btn btn-success">View on GitHub</button></a></p>
         </div>
@@ -81,10 +83,14 @@ h1{
   font-size: 25px;
 }
 
-#model p{
-  color: white;
+#content p{
+  color: #8B949E;
   font-size: 20px;
   text-align: left;
+}
+
+#arduino-source p{
+  color: white;
 }
 
 #banner{
@@ -138,10 +144,8 @@ h3{
   width: 500px;
 }
 
-@media only screen and (max-width: 1000px) {
-  #wysiwyg h3, #model h3{
-    text-align: center !important;
-  }
+#model, #wysiwyg{
+  margin: 0 20px;
 }
 
 @media only screen and (max-width: 700px) {
@@ -151,7 +155,7 @@ h3{
   #arduino{
     width: 100%;
   }
-  #model p{
+  #arduino-source p{
     text-align: center;
   }
 }
