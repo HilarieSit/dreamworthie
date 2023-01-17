@@ -5,7 +5,6 @@
       <h1>Dreamworthie</h1>
       <h2>Accessibility Tools for Educators and Content Creators</h2>
     </div>
-    <div class="scallop-up"></div>
     <div id="content">
       <div id="wysiwyg">
         <h3 data-aos="fade-up"> WYSIWYG Editors</h3>
@@ -51,6 +50,21 @@ export default {
 </script>
 
 <style>
+.light-mode h3, .light-mode h1{
+  color: black !important;
+}
+.light-mode #banner{
+  background-color: rgb(210, 223, 231) !important;
+}
+.light-mode p{
+  color: #555 !important;
+}
+.light-mode #banner h2{
+  color: #555;
+}
+.light-mode #arduino{
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
 #webgl{
   position: absolute;
   z-index: 0;
@@ -70,7 +84,7 @@ export default {
 h1{
   color: white;
   font-size: 35px;
-  font-weight: 900;
+  font-weight: 800;
   z-index: 2 !important;
   margin: 0 0 10px;
 }
@@ -91,15 +105,16 @@ h1{
 
 #arduino-source p{
   color: white;
+  padding: 0 30px;
 }
 
 #banner{
   background-color: black;
-  padding: 30px 10px;
+  padding: 40px 10px 80px;
 }
 
 #content{
-  padding: 10px 20px 50px;
+  padding: 50px 20px;
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
@@ -127,14 +142,6 @@ h3{
   margin: 15px 7px 0;
 }
 
-.scallop-up{
-  height: 100px;
-  width: calc(100% + 75px);
-  margin-left: -75px;
-  background: -webkit-gradient(radial, 50% 100%, 10, 50% 100%, 150, from(#101e27), color-stop(0.49, #101e27), color-stop(0.51, black), to(black));
-  background-size: 150px 100%;
-}
-
 #arduino-container{
   display: flex;
   align-items: center;
@@ -142,10 +149,29 @@ h3{
 
 #arduino{
   width: 500px;
+  border-radius: 20px;
 }
 
 #model, #wysiwyg{
   margin: 0 20px;
+}
+
+#accordion-gif{
+  width: 500px;
+}
+#accordion-container{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+#accordion-source{
+  padding: 20px;
+}
+
+h4{
+  color: white;
+  text-align: left;
 }
 
 @media only screen and (max-width: 700px) {
@@ -155,10 +181,11 @@ h3{
   #arduino{
     width: 100%;
   }
+  #arduino-source{
+    padding-top: 30px;
+  }
   #arduino-source p{
     text-align: center;
   }
 }
-
-
 </style>
