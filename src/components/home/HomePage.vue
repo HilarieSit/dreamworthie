@@ -1,5 +1,4 @@
 <template>
-  <div id="webgl"></div>
   <div id="home">
     <div id="banner">
       <h1>Accessibility Tools</h1>
@@ -83,7 +82,6 @@ export default {
         const geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
         const material = new THREE.MeshPhongMaterial( { 
             color: 0x9862070,
-            specular: 0x050505,
             shininess: 100
         } ) 
         this.mesh = new THREE.Mesh(geometry, material)
@@ -140,16 +138,6 @@ export default {
 }
 .light-mode #arduino{
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-#webgl{
-  position: absolute;
-  z-index: 0;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events:none; 
 }
 #home{
   text-align: center;
@@ -262,6 +250,10 @@ h4{
   }
   #arduino-source p{
     text-align: center;
+  }
+  .webgl{
+    width: 100% !important;
+    height: 100%;
   }
 }
 </style>

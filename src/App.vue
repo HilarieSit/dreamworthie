@@ -110,6 +110,7 @@ a {
 #app-contents{
   min-height: 100vh;
   background-color: black;
+  overflow: hidden;
 }
 nav{
   padding: 10px 10px;
