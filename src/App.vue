@@ -2,10 +2,10 @@
   <div id="app-contents" class="light-mode">
     <nav>
       <ul>
-        <router-link to="/"><p>dreamworthie</p></router-link>
-        <router-link to="/"><li>Tools</li></router-link>
-        <router-link to="/blog"><li>Blog</li></router-link>
-        <router-link to="/about"><li>About</li></router-link>
+        <p>dreamworthie</p>
+        <li><router-link to="/">Tools</router-link></li>
+        <li><router-link to="/blog">Blog</router-link></li>
+        <li><router-link to="/about">About</router-link></li>
         <li><label class="switch" id="switch">
           <input type="checkbox" @change="changeMode">
           <span class="slider round"></span>
@@ -106,6 +106,7 @@ input:checked + .slider:before {
 }
 a {
   color: inherit;
+  text-decoration: none;
 }
 #app-contents{
   min-height: 100vh;

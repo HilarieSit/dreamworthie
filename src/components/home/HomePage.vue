@@ -54,8 +54,8 @@ export default {
 
         // Sizes
         const sizes = {
-            width: 400,
-            height: 400
+            width: canvas.offsetWidth,
+            height: canvas.offsetHeight
         }
 
         // Renderer
@@ -223,6 +223,7 @@ h3{
 #accordion-gif{
   width: 500px;
 }
+
 #accordion-container{
   display: flex;
   flex-direction: row-reverse;
@@ -236,6 +237,11 @@ h3{
 h4{
   color: white;
   text-align: left;
+}
+
+.webgl{
+  width: 350px;
+  height: 350px;
 }
 
 @media only screen and (max-width: 700px) {
@@ -253,7 +259,6 @@ h4{
   }
   .webgl{
     width: 100% !important;
-    height: 100%;
   }
 }
 </style>

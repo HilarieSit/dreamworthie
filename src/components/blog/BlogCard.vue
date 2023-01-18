@@ -34,6 +34,7 @@ export default {
     width: 250px;
     object-fit: cover;
     flex-shrink: 0;
+    border-radius: 15px;
 }
 .card-body{
     margin-left: 20px;
