@@ -2,8 +2,8 @@
   <div id="webgl"></div>
   <div id="home">
     <div id="banner">
-      <h1>Dreamworthie</h1>
-      <h2>Accessibility Tools for Educators and Content Creators</h2>
+      <h1>Accessibility Tools</h1>
+      <h2>for Educators and Content Creators</h2>
     </div>
     <div id="content">
       <div id="wysiwyg">
@@ -19,7 +19,7 @@
         <h3 data-aos="fade-up"> Accessible 3D Models </h3>
         <p data-aos="fade-up"> a3model aims to improve the accessibility of Three.js models by offering keyboard navigation for hover and click events, focus indication on meshes/objects, mobile touch events, cursor updates, and roles/descriptions for screen readers. </p>
         <div id="arduino-container">
-        <img id="arduino" data-aos="fade-right" alt="Arduino metro mini 3d model" src="https://dreamworthie.s3.us-east-2.amazonaws.com/arduino.png">
+        <!-- <img id="arduino" data-aos="fade-right" alt="Arduino metro mini 3d model" src="https://dreamworthie.s3.us-east-2.amazonaws.com/arduino.png"> -->
         <div id="arduino-source" data-aos="fade-up">
           <p>Npm Package <a href="https://www.npmjs.com/package/a3model" target="_blank" rel="noopener noreferrer"><button class="btn btn-success">Try it out!</button></a></p>
           <p>Open Source Code <a href="https://github.com/HilarieSit/a3" target="_blank" rel="noopener noreferrer"><button class="btn btn-success">View on GitHub</button></a></p>
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style>
-.light-mode h3, .light-mode h1{
+.light-mode h3, .light-mode h1, .light-mode h4{
   color: black !important;
 }
 .light-mode #banner{
@@ -105,11 +105,11 @@ h1{
 
 #arduino-source p{
   color: white;
-  padding: 0 30px;
+  padding: 10px 30px;
 }
 
 #banner{
-  background-color: black;
+  background-color: #101e27;
   padding: 40px 10px 80px;
 }
 

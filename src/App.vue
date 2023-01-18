@@ -1,15 +1,16 @@
 <template>
   <div id="app-contents" class="light-mode">
-    <nav class="navbar navbar-light bg-light">
+    <nav>
       <ul>
+        <router-link to="/"><p>dreamworthie</p></router-link>
         <router-link to="/"><li>Tools</li></router-link>
         <router-link to="/blog"><li>Blog</li></router-link>
         <router-link to="/about"><li>About</li></router-link>
+        <li><label class="switch" id="switch">
+          <input type="checkbox" @change="changeMode">
+          <span class="slider round"></span>
+        </label></li>
       </ul>
-      <label class="switch" id="switch">
-        <input type="checkbox" @change="changeMode">
-        <span class="slider round"></span>
-      </label>
     </nav>
     <div id="routerview">
       <router-view/>
@@ -38,12 +39,12 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 .switch {
   position: relative;
   display: inline-block;
   width: 40px;
   height: 24px;
-  right: 20px;
 }
 .switch input {
   opacity: 0;
@@ -89,7 +90,7 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-.light-mode .navbar{
+.light-mode nav{
   background-color: rgb(210, 223, 231) !important;
   color: #555
 }
@@ -108,13 +109,11 @@ a {
 }
 #app-contents{
   min-height: 100vh;
-  background-color: #101e27;
-}
-.navbar{
-  padding-left: 15px;
-  background-color: black !important;
+  background-color: black;
 }
 nav{
+  padding: 10px 10px;
+  background-color: #101e27 !important;
   font-weight: bold;
   color: #8B949E;
 }
@@ -124,9 +123,16 @@ nav ul{
   padding: 0;
   text-align: right !important;
 }
+nav ul p{
+  font-family: 'Dancing Script', cursive;
+  float: left;
+  margin-left: 20px;
+  font-size: 25px;
+  color: #8B949E;
+}
 nav li{
   display: inline-block;
-  margin: 0 25px;
+  margin: 0 20px;
   padding: 5px 0;
   cursor: pointer;
 }
@@ -143,7 +149,7 @@ footer {
   text-align: center;
   width: 100%;
   display: inline-block;
-  background-color: black;
+  background-color: #101e27;
   color: #8B949E;
 }
 footer p {
