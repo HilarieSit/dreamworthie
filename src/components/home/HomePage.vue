@@ -118,15 +118,13 @@ export default {
 }
 .light-mode #banner{
   background-color: rgb(210, 223, 231) !important;
+  box-shadow: 0 3px 3px -3px grey;
 }
 .light-mode p{
   color: #555 !important;
 }
 .light-mode #banner h2{
   color: #555;
-}
-.light-mode #arduino{
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 #home{
   text-align: center;
@@ -169,7 +167,7 @@ h1{
 #content{
   padding: 50px 20px;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -199,15 +197,6 @@ h3{
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-#arduino{
-  width: 500px;
-  border-radius: 20px;
-}
-
-#model, #wysiwyg{
-  margin: 0 20px;
 }
 
 #accordion-gif{

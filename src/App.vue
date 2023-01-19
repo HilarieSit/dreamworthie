@@ -1,18 +1,21 @@
 <template>
   <div id="app-contents" class="light-mode">
     <nav>
-      <p>dreamworthie</p>
-      <div id="menu" @click="toggleMenu">
-        <div id="bar1" class="bar"></div>
-        <div id="bar2" class="bar"></div>
-        <div id="bar3" class="bar"></div>
+      <div id="nav-items">
+        <p>dreamworthie</p>
+        <button id="menu" @click="toggleMenu">
+          <div id="bar1" class="bar"></div>
+          <div id="bar2" class="bar"></div>
+          <div id="bar3" class="bar"></div>
+        </button>
+        <ul id="menu-items" class="closed">
+          <li><router-link to="/" @click="closeMenu">Tools</router-link></li>
+          <li><router-link to="/blog" @click="closeMenu">Blog</router-link></li>
+          <li><router-link to="/about" @click="closeMenu">About</router-link></li>
+          <li><button id="mode" @click="changeMode"><img id="mode-icon" src="./assets/mode.png" alt="toggle light mode"></button></li>
+          <li><router-link to="/login" @click="closeMenu" id="login-btn" class="btn btn-success">Sign in</router-link></li>
+        </ul>
       </div>
-      <ul id="menu-items" class="closed">
-        <li><router-link to="/" @click="closeMenu">Tools</router-link></li>
-        <li><router-link to="/blog" @click="closeMenu">Blog</router-link></li>
-        <li><router-link to="/about" @click="closeMenu">About</router-link></li>
-        <li><button id="mode" @click="changeMode"><img id="mode-icon" src="./assets/mode.png" alt="toggle light mode"></button></li>
-      </ul>
     </nav>
     <div id="routerview">
       <router-view/>
@@ -27,7 +30,7 @@
 require('./assets/mode.png')
 window.addEventListener('resize', function() {
    if (window.innerWidth >= 700) {
-    document.body.style.overflow = 'scroll'
+    document.body.style.overflowY = 'scroll'
   }
 }, true);
 export default {
@@ -45,18 +48,18 @@ export default {
     },
     closeMenu(){
       const menu = document.getElementById("menu-items")
-      document.body.style.overflow = "scroll"
+      document.body.style.overflowY = "scroll"
       this.uncross()
       menu.classList.add('closed')
     },
     toggleMenu(){
       const menu = document.getElementById("menu-items")
       if (menu.classList.contains('closed')){
-        document.body.style.overflow = "hidden"
+        document.body.style.overflowY = "hidden"
         this.cross()
         menu.classList.remove('closed')
       } else {
-        document.body.style.overflow = "scroll"
+        document.body.style.overflowY = "scroll"
         this.uncross()
         menu.classList.add('closed')
       }
@@ -77,6 +80,9 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+.btn-success{
+  color: white !important;
+}
 #mode-icon{
   width: 22px;
   padding-bottom: 5px;
@@ -98,7 +104,8 @@ export default {
 }
 .light-mode footer{
   background-color: rgb(210, 223, 231);
-  color: #555
+  color: #555;
+  box-shadow: 0 3px 3px 3px grey;
 }
 .light-mode #moon{
   filter: brightness(90%)
@@ -113,10 +120,14 @@ a {
   overflow: hidden;
 }
 nav{
-  padding: 10px 10px;
+  padding: 10px 5px;
   background-color: #101e27 !important;
   font-weight: bold;
   color: #8B949E;
+}
+#nav-items{
+  margin: 0 auto;
+  max-width: 1200px;
 }
 nav ul{
   display: block;
@@ -127,6 +138,7 @@ nav ul{
 nav p{
   font-family: 'Dancing Script', cursive;
   float: left;
+  margin-top: 5px;
   margin-left: 20px;
   font-size: 25px;
   color: #8B949E;
@@ -163,12 +175,18 @@ footer p {
 .closed{
   display: block;
 }
+#menu{
+  display: none;
+}
 @media only screen and (max-width: 700px) {
   #menu{
+    display: block;
     position: absolute;
     top: 10px;
     right: 10px;
-    padding: 5px 15px 0 0;
+    margin: 5px 15px 0 0;
+    border: none;
+    background-color: inherit;
   }
   .bar {
     width: 25px;
@@ -207,6 +225,9 @@ footer p {
     display: block;
     text-align: center;
     margin: 10px 40px;
+    font-size: 25px;
+  }
+  #login-btn{
     font-size: 25px;
   }
 }

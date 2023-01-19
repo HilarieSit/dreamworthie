@@ -5,6 +5,7 @@ import TableEditor from './components/table/TableEditor'
 import TemplateEditor from './components/custom/CustomTemplateEditor'
 import AboutUs from './components/about/AboutUs'
 import BlogPage from './components/blog/BlogPage'
+import LogIn from './components/home/LogIn'
 
 const routes = [
     {
@@ -36,6 +37,11 @@ const routes = [
         path:'/blog',
         name: 'Blog',
         component: BlogPage
+    },
+    {
+        path:'/login',
+        name: 'Login',
+        component: LogIn
     }
 ]
 
