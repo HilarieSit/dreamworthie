@@ -51,13 +51,11 @@ export default {
   methods: {
     init: function() {
         const canvas = document.querySelector('canvas.webgl')
-
         // Sizes
         const sizes = {
             width: canvas.offsetWidth,
             height: canvas.offsetHeight
         }
-
         // Renderer
         this.renderer = new THREE.WebGLRenderer({
             canvas: canvas,
@@ -65,19 +63,15 @@ export default {
         })
         this.renderer.setSize(sizes.width, sizes.height);
         this.renderer.setClearColor( 0x000000, 0 );
-
         // A3 
         const a3canvas = document.querySelector('#a3canvas');
         this.mya3 = new A3(canvas, this.renderer, a3canvas, sizes);
-
         // Scene
         this.scene = new THREE.Scene()
-
         // Camera 
         this.camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
         this.camera.position.z = 30
         this.scene.add(this.camera)
-
         // Mesh
         const geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
         const material = new THREE.MeshPhongMaterial( { 
@@ -88,23 +82,18 @@ export default {
         this.mesh.name = "mesh"
         this.mesh = this.mya3.createBox(this.mesh, "button")
         this.scene.add(this.mesh)
-
         const light = new THREE.AmbientLight(0x404040); // soft white light
         this.scene.add( light );
-
         const spotLight = new THREE.SpotLight(0xffffff);
         spotLight.position.set(100, 100, 100);
         spotLight.castShadow = true;
         this.scene.add( spotLight );
-
         // A3 Click 
         let funct = this.mya3.functWrapper(changeColor, this.mesh)
         this.mya3.click(this.mesh.name, funct, 'mesh color changed on click', this.camera)
-
         function changeColor(child){
             child.material.color.setHex(Math.random() * 0xffffff);
         }
-
         this.mya3.renderEffects(this.camera)
     },
     animate: function() {
@@ -209,6 +198,7 @@ h3{
 #arduino-container{
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 #arduino{
@@ -258,7 +248,7 @@ h4{
     text-align: center;
   }
   .webgl{
-    width: 100% !important;
+    margin: 0 auto;
   }
 }
 </style>

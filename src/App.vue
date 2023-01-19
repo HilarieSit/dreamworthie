@@ -1,15 +1,17 @@
 <template>
   <div id="app-contents" class="light-mode">
     <nav>
-      <ul>
-        <p>dreamworthie</p>
-        <li><router-link to="/">Tools</router-link></li>
-        <li><router-link to="/blog">Blog</router-link></li>
-        <li><router-link to="/about">About</router-link></li>
-        <li><label class="switch" id="switch">
-          <input type="checkbox" @change="changeMode">
-          <span class="slider round"></span>
-        </label></li>
+      <p>dreamworthie</p>
+      <div id="menu" @click="toggleMenu">
+        <div id="bar1" class="bar"></div>
+        <div id="bar2" class="bar"></div>
+        <div id="bar3" class="bar"></div>
+      </div>
+      <ul id="menu-items" class="closed">
+        <li><router-link to="/" @click="closeMenu">Tools</router-link></li>
+        <li><router-link to="/blog" @click="closeMenu">Blog</router-link></li>
+        <li><router-link to="/about" @click="closeMenu">About</router-link></li>
+        <li><button id="mode" @click="changeMode"><img id="mode-icon" src="./assets/mode.png" alt="toggle light mode"></button></li>
       </ul>
     </nav>
     <div id="routerview">
@@ -22,6 +24,12 @@
 </template>
 
 <script>
+require('./assets/mode.png')
+window.addEventListener('resize', function() {
+   if (window.innerWidth >= 700) {
+    document.body.style.overflow = 'scroll'
+  }
+}, true);
 export default {
   name: 'app',
   methods: {
@@ -33,6 +41,35 @@ export default {
       else {
         appClasses.add('light-mode')
       }
+      this.closeMenu()
+    },
+    closeMenu(){
+      const menu = document.getElementById("menu-items")
+      document.body.style.overflow = "scroll"
+      this.uncross()
+      menu.classList.add('closed')
+    },
+    toggleMenu(){
+      const menu = document.getElementById("menu-items")
+      if (menu.classList.contains('closed')){
+        document.body.style.overflow = "hidden"
+        this.cross()
+        menu.classList.remove('closed')
+      } else {
+        document.body.style.overflow = "scroll"
+        this.uncross()
+        menu.classList.add('closed')
+      }
+    },
+    cross(){
+      document.getElementById("bar1").style.transform = "rotate(-45deg) translate(-6px, 6px)"
+      document.getElementById("bar2").style.opacity = "0"
+      document.getElementById("bar3").style.transform = "rotate(45deg) translate(-5px, -6px)"
+    },
+    uncross(){
+      document.getElementById("bar1").style.transform = "none"
+      document.getElementById("bar2").style.opacity = "1"
+      document.getElementById("bar3").style.transform = "none"
     }
   }
 }
@@ -40,55 +77,17 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 24px;
+#mode-icon{
+  width: 22px;
+  padding-bottom: 5px;
+  filter: invert(70%);
 }
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+#mode{
+  border: none;
+  background-color: rgba(0,0,0,0);
 }
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-input:checked + .slider {
-  background-color: #2196F3;
-}
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-input:checked + .slider:before {
-  -webkit-transform: translateX(16px);
-  -ms-transform: translateX(16px);
-  transform: translateX(16px);
-}
-.slider.round {
-  border-radius: 34px;
-}
-.slider.round:before {
-  border-radius: 50%;
+.light-mode #mode-icon{
+  filter: none;
 }
 .light-mode nav{
   background-color: rgb(210, 223, 231) !important;
@@ -125,7 +124,7 @@ nav ul{
   padding: 0;
   text-align: right !important;
 }
-nav ul p{
+nav p{
   font-family: 'Dancing Script', cursive;
   float: left;
   margin-left: 20px;
@@ -160,5 +159,55 @@ footer p {
 }
 #routerview{
   min-height: calc(100vh - 111px);
+}
+.closed{
+  display: block;
+}
+@media only screen and (max-width: 700px) {
+  #menu{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 15px 0 0;
+  }
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #8B949E;
+    margin: 5px 0;
+    transition: 0.4s;
+    border-radius: 5px;
+  }
+  .light-mode .bar{
+    background-color: #555;
+  }
+  nav p{
+    float: none;
+    text-align: center;
+    margin: 0;
+  }
+  .closed{
+    display: none;
+  }
+  nav ul{
+    position: absolute;
+    right: 20px;
+    margin-top: 10px;
+    padding: 30px 0 30px 0;
+    background-color: black;
+    z-index: 6;
+    border-radius: 20px;
+    width: 200px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+  .light-mode nav ul{
+    background-color: #eee;;
+  }
+  nav li{
+    display: block;
+    text-align: center;
+    margin: 10px 40px;
+    font-size: 25px;
+  }
 }
 </style>
