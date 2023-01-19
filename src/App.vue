@@ -99,6 +99,9 @@ export default {
   background-color: rgb(210, 223, 231) !important;
   color: #555
 }
+.light-mode nav p{
+  color: #555;
+}
 .light-mode{
   background-color: #eee !important;
 }
@@ -107,23 +110,21 @@ export default {
   color: #555;
   box-shadow: 0 3px 3px 3px grey;
 }
-.light-mode #moon{
-  filter: brightness(90%)
-}
 a {
   color: inherit;
   text-decoration: none;
 }
 #app-contents{
   min-height: 100vh;
-  background-color: black;
+  background-color: #1a1a1a;
   overflow: hidden;
 }
 nav{
   padding: 10px 5px;
-  background-color: #101e27 !important;
+  background-color: black;
   font-weight: bold;
   color: #8B949E;
+  box-shadow: 0 3px 3px -3px grey;
 }
 #nav-items{
   margin: 0 auto;
@@ -162,7 +163,7 @@ footer {
   text-align: center;
   width: 100%;
   display: inline-block;
-  background-color: #101e27;
+  background-color: black;
   color: #8B949E;
 }
 footer p {
@@ -216,10 +217,11 @@ footer p {
     z-index: 6;
     border-radius: 20px;
     width: 200px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: #000 0px 8px 24px;
   }
   .light-mode nav ul{
-    background-color: #eee;;
+    background-color: #eee;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
   nav li{
     display: block;

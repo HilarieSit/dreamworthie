@@ -120,8 +120,8 @@ export default {
   background-color: rgb(210, 223, 231) !important;
   box-shadow: 0 3px 3px -3px grey;
 }
-.light-mode p{
-  color: #555 !important;
+.light-mode #content p{
+  color: #555;
 }
 .light-mode #banner h2{
   color: #555;
@@ -160,7 +160,7 @@ h1{
 }
 
 #banner{
-  background-color: #101e27;
+  background-color: black;
   padding: 40px 10px 80px;
 }
 

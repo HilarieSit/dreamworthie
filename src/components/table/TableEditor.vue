@@ -226,6 +226,9 @@ export default {
   background-color: rgba(0,0,0,0) !important;
   color: white;
 }
+.light-mode .btn-menu{
+  color: black;
+}
 .swap-row{
   cursor: move;
 }

@@ -118,6 +118,9 @@ export default {
   background-color: rgba(0,0,0,0) !important;
   color: white;
 }
+.light-mode .btn-menu{
+  color: black;
+}
 #accordion-header h1{
   color: white;
   margin-top: 40px;

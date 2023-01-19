@@ -27,7 +27,7 @@ h1{
 }
 .light-mode form{
     background-color: white;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 14px 40px;
     color: black;
 }
 form{
@@ -35,7 +35,8 @@ form{
     padding: 40px;
     margin: 60px auto 0;
     border-radius: 20px;
-    background-color: rgba(244, 244, 244, 0.2);
+    background-color: #000;
+    box-shadow: 0 14px 40px #000;
     color: white;
 }
 button,
