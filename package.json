@@ -42,6 +42,7 @@
     "core-js": "^3.8.3",
     "dotenv": "^16.0.3",
     "eiows": "^4.1.2",
+    "firebase": "^9.16.0",
     "html": "^1.0.0",
     "https-browserify": "^1.0.0",
     "js-beautify": "^1.14.3",
@@ -52,13 +53,14 @@
     "path": "^0.12.7",
     "socket.io": "^0.8.7",
     "stream": "^0.0.2",
-    "three": "^0.146.0",
+    "three": "^0.148.0",
     "tinymce": "^6.2.0",
     "veeno": "^0.0.4",
     "vue": "^3.2.13",
     "vue-router": "^4.0.14",
     "vue2-editor": "^2.10.3",
-    "vuedraggable": "^4.1.0"
+    "vuedraggable": "^4.1.0",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",

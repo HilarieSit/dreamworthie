@@ -12,8 +12,10 @@
           <li><router-link to="/" @click="closeMenu">Tools</router-link></li>
           <li><router-link to="/blog" @click="closeMenu">Blog</router-link></li>
           <li><router-link to="/about" @click="closeMenu">About</router-link></li>
+          <li v-if="$store.state.user"><router-link to="/dashboard" @click="closeMenu">Dashboard</router-link></li>
           <li><button id="mode" @click="changeMode"><img id="mode-icon" src="./assets/mode.png" alt="toggle light mode"></button></li>
-          <li><router-link to="/login" @click="closeMenu" id="login-btn" class="btn btn-success">Sign in</router-link></li>
+          <li v-if="!$store.state.user"><router-link to="/login" @click="closeMenu" id="login-btn" class="btn btn-success">Sign in</router-link></li>
+          <li v-if="$store.state.user" @click="$store.dispatch('logout')" id="logout-btn" class="btn btn-success">Log out</li>
         </ul>
       </div>
     </nav>
@@ -27,6 +29,9 @@
 </template>
 
 <script>
+import { onBeforeMount } from 'vue'
+import { useStore } from 'vuex'
+
 require('./assets/mode.png')
 window.addEventListener('resize', function() {
    if (window.innerWidth >= 700) {
@@ -35,6 +40,13 @@ window.addEventListener('resize', function() {
 }, true);
 export default {
   name: 'app',
+  setup() {
+    const store = useStore()
+
+    onBeforeMount(() => {
+      store.dispatch('fetchUser')
+    })
+  },
   methods: {
     changeMode(){
       const appClasses = document.getElementById("app-contents").classList
@@ -97,7 +109,8 @@ export default {
 }
 .light-mode nav{
   background-color: rgb(210, 223, 231) !important;
-  color: #555
+  color: #555;
+  box-shadow: 0 3px 3px -3px grey;
 }
 .light-mode nav p{
   color: #555;
@@ -124,7 +137,6 @@ nav{
   background-color: black;
   font-weight: bold;
   color: #8B949E;
-  box-shadow: 0 3px 3px -3px grey;
 }
 #nav-items{
   margin: 0 auto;
@@ -178,6 +190,9 @@ footer p {
 }
 #menu{
   display: none;
+}
+#logout-btn{
+  padding: 0.375rem 0.75rem;
 }
 @media only screen and (max-width: 700px) {
   #menu{
